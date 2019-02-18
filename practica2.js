@@ -17,6 +17,7 @@ const termostato = new Termostato(dormitorio);
 // Configuramos el termostato para controlar la temperatura:
 termostato.on('muchofrio', () => climatizador.calentar());
 termostato.on('muchocalor', () => climatizador.enfriar());
+termostato.on('ideal', () => termostato.indicarTemperaturaIdeal(temp));
 
 // Mostar la temperatura periodicamente:
 termostato.on('tic', (temp) => console.log(`${temp.toFixed(1)}ºC`));
