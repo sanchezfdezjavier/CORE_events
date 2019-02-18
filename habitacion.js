@@ -4,7 +4,6 @@
 class Habitacion {
 	
 	constructor() {
-
 		// Temperatura actual de la habitacion:
 		this.temperatura = 20.0;
 
