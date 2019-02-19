@@ -2,15 +2,21 @@
 
 class EventEmitter {
 
-    emit(){
-        console.log('emitter method');
+    constructor(){
+        this.events = {};
     }
-    on(){
-        console.log('listener method');
+
+    emit(eventName, callback){
+        console.log(eventName, callback);
+    }
+
+    on(eventName, callback){
+        if(this.events[eventName]){
+            this.events[eventName].push(callback);
+        }else{
+            this.events[eventName] = [callback];
+        }
     }
 }
 
-
-
-
-exports = module.exports = EventEmmitter;
+exports = module.exports = EventEmitter;
