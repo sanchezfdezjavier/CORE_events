@@ -1,22 +1,17 @@
-
-
-class EventEmitter {
-
+class EventEmitter{
     constructor(){
-        this.events = {};
+        this.listeners = {};
     }
 
-    emit(eventName, callback){
-        console.log(eventName, callback);
+    emit(eventName, ...args){
+        if(this.listeners[eventName]){
+            this.listeners[eventName].forEach(cb => cb(...args));
+        }
     }
 
     on(eventName, callback){
-        if(this.events[eventName]){
-            this.events[eventName].push(callback);
-        }else{
-            this.events[eventName] = [callback];
-        }
+        this.listeners[eventName]=this.listeners[eventName] || [];
+        this.listeners[eventName].push(callback);
     }
 }
-
 exports = module.exports = EventEmitter;
