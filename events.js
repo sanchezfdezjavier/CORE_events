@@ -5,13 +5,15 @@ class EventEmitter{
 
     emit(eventName, ...args){
         if(this.listeners[eventName]){
+            console.log(`Emitiendo ${eventName}`);
             this.listeners[eventName].forEach(cb => cb(...args));
         }
     }
 
     on(eventName, callback){
-        this.listeners[eventName]=this.listeners[eventName] || [];
+        this.listeners[eventName] = this.listeners[eventName] || [];
         this.listeners[eventName].push(callback);
     }
 }
+
 exports = module.exports = EventEmitter;
