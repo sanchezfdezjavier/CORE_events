@@ -1,18 +1,17 @@
 class EventEmitter{
     constructor(){
-        this.listeners = {};
+        this.listeners = new Map();
     }
 
-    emit(eventName, ...args){
-        if(this.listeners[eventName]){
-            console.log(`Emitiendo ${eventName}`);
-            this.listeners[eventName].forEach(cb => cb(...args));
+    emit(eventName, args){
+        if(args === null){
+            return this.listeners.get(eventName)();
         }
+        return (args)=> this.listeners.get(eventName)(args);
     }
 
-    on(eventName, callback){
-        this.listeners[eventName] = this.listeners[eventName] || [];
-        this.listeners[eventName].push(callback);
+    on(name, callback){
+        this.listeners.set(name, callback)
     }
 }
 
